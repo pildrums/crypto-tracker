@@ -12,7 +12,7 @@ interface는 Object 형식으로 타입을 지정할 때 사용합니다.
  예를 들어 하나의 컴포넌트에 여러가지의 Props가 들어갈 때,  
  그 props들의 타입을 한번에 묶어서 지정해줄 수 있습니다.
 
-```javascript
+```typescript
 interface ComponentProps {
   name: string;
   age: number;
@@ -30,7 +30,7 @@ sayHello({name: Pildrum, age: 100});
 optional props는 반드시 required가 아니어도 되는 상황일 때  
  쓸 수 있습니다. key 바로 뒤에 ?를 넣어주면됩니다.
 
-```javascript
+```typescript
 interface ComponentProps {
   name: string;
   age?: number;
