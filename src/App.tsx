@@ -4,7 +4,7 @@ const App = () => {
   return (
     <div>
       <Circle bgColor="teal" borderColor="#333" />
-      <Circle bgColor="tomato" />
+      <Circle bgColor="tomato" text="im here" />
     </div>
   );
 };

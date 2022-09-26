@@ -11,6 +11,7 @@ import styled from "styled-components";
 interface CircleProps {
   bgColor: string;
   borderColor?: string;
+  text?: string;
 }
 
 /**
@@ -26,8 +27,19 @@ interface ContainerProps {
 }
 
 // borderColor props 안에 AND 연산자로 작성하면 조건부로 선의 컬러를 넣을 수 있음.
-const Circle = ({ bgColor, borderColor }: CircleProps) => {
-  return <Container bgColor={bgColor} borderColor={borderColor ?? bgColor} />;
+/**
+ * @todo TypeScript and State practice
+ */
+const Circle = ({
+  bgColor,
+  borderColor,
+  text = "default text",
+}: CircleProps) => {
+  return (
+    <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>
+      {text}
+    </Container>
+  );
 };
 
 const Container = styled.div<ContainerProps>`
