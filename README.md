@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# Crypto Tracker 실습
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 노마드코더 강의를 보고 실습한 프로젝트입니다.  
+향후에 배운 내용을 바탕으로 저만의 다양한 방식으로 새롭게  
+제작될 예정입니다.
 
-## Available Scripts
+# 2022.9.27
 
-In the project directory, you can run:
+## 1. Interface
 
-### `yarn start`
+interface는 Object 형식으로 타입을 지정할 때 사용합니다.  
+ 예를 들어 하나의 컴포넌트에 여러가지의 Props가 들어갈 때,  
+ 그 props들의 타입을 한번에 묶어서 지정해줄 수 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+interface ComponentProps {
+  name: string;
+  age: number;
+}
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+function sayHello({name, age}: ComponentProps) {
+  `Hello My name is ${name}! I'm ${age} years old.`
+}
 
-### `yarn test`
+sayHello({name: Pildrum, age: 100});
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2. Optional Props
 
-### `yarn build`
+optional props는 반드시 required가 아니어도 되는 상황일 때  
+ 쓸 수 있습니다. key 바로 뒤에 ?를 넣어주면됩니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+interface ComponentProps {
+  name: string;
+  age?: number;
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+function sayHello({name, age}: ComponentProps) {
+  `Hello My name is ${name}! I'm ${age} years old.`
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+sayHello({name: Pildrum});
+```
