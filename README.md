@@ -1,15 +1,13 @@
 # Crypto Tracker 실습
 
-이 프로젝트는 노마드코더 강의를 보고 실습한 프로젝트입니다.  
+이 프로젝트는 노마드코더 강의를 보고 실습한 것을 정리한 문서입니다.
 향후에 배운 내용을 바탕으로 저만의 다양한 방식으로 새롭게 제작될 예정입니다.
 
 # 2022.9.27
 
 ## 1. Interface
 
-interface는 Object 형식으로 타입을 지정할 때 사용합니다.  
-예를 들어 하나의 컴포넌트에 여러가지의 Props가 들어갈 때,  
-그 props들의 타입을 한번에 묶어서 지정해줄 수 있습니다.
+interface는 Object 형식으로 타입을 지정할 때 사용합니다. 예를 들어 하나의 컴포넌트에 여러가지의 Props가 들어갈 때, 그 props들의 타입을 한번에 묶어서 지정해줄 수 있습니다.
 
 ```typescript
 interface ComponentProps {
@@ -26,8 +24,7 @@ sayHello({ name: Pildrum, age: 100 });
 
 ## 2. Optional Props
 
-optional props는 반드시 required가 아니어도 되는 상황일 때  
-쓸 수 있습니다. key 바로 뒤에 ?를 넣어주면됩니다.
+optional props는 반드시 required가 아니어도 되는 상황일 때 쓸 수 있습니다. key 바로 뒤에 ?를 넣어주면 됩니다.
 
 ```typescript
 interface ComponentProps {
@@ -44,13 +41,8 @@ sayHello({ name: Pildrum });
 
 ## 3. State
 
-Typescript로 만들어진 React Project는 useState 함수안에 인자에  
-따라서 인자의 타입을 추론합니다.  
-그래서 따로 타입을 명시해 줄 필요는 없습니다.  
-다만 상황에 따라서는 타입을 두가지 이상 넣어줘야할 때가 있습니다.  
-이를테면, state 초깃값이 number나 string을 줘야할 때는 OR 연산자로  
-타입을 지정해주면 number나 string값 두개를 넣어도 에러를 발생시키지  
-않습니다.
+Typescript로 만들어진 React Project는 useState 함수안에 인자에 따라서 인자의 타입을 추론합니다. 그래서 따로 타입을 명시해 줄 필요는 없습니다.  
+다만 상황에 따라서는 타입을 두가지 이상 넣어줘야할 때가 있습니다. 이를테면, state 초깃값이 number나 string을 줘야할 때는 OR 연산자로 타입을 지정해주면 number나 string값 두개를 넣어도 에러를 발생시키지 않습니다.
 
 ### 첫번째 예시
 
@@ -88,18 +80,14 @@ NomadCoder 강의에서는 v5로 작업을 했지만, 저는 여기서 v6로 리
 import { BrowserRouter } from 'react-router-dom';
 
 const Router = () => {
-  return (
-    <BrowserRouter>
-    </BrowserRouter>
-  );
+  return <BrowserRouter></BrowserRouter>;
 };
 
 export default Router;
 ```
-2. Routes와 Route를 사용해서 라우팅할 컴포넌트를 넣어줍니다.  
-path props에 사용할 쿼리를 적어주면 됩니다.  
-v5와 다르게 v6는 Switch가 아닌 Routes를 사용하고, element props 안에  
-라우팅할 컴포넌트를 넣어주게 됩니다.
+
+2. Routes와 Route를 사용해서 라우팅할 컴포넌트를 넣어줍니다. path props에 사용할 쿼리를 적어주면 됩니다.  
+   v5와 다르게 v6는 Switch가 아닌 Routes를 사용하고, element props 안에 라우팅할 컴포넌트를 넣어주게 됩니다.
 
 ```typescript
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -117,3 +105,130 @@ const Router = () => {
 
 export default Router;
 ```
+
+## 5. useEffect에서 함수 즉각 실행
+
+useEffect에서 함수를 즉각 실행하는 방법은 다음 코드와 같이 useEffect 안에 만들어 준 함수 안에 괄호 두개를 넣고, 첫번째 괄호 안에 다른 코드를 넣어주면 됩니다.
+
+```typescript
+import {useEffect} from 'react';
+
+useEffect(() => {
+  ()();
+}, []);
+
+(...)
+```
+
+다음 코드는 위에 코드를 활용해서 실제로 api를 불러올때 쓴 코드입니다.
+
+```typescript
+import { useEffect } from 'react';
+
+const Coins = () => {
+  const [coins, setCoins] = useState<CoinInterface[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('https://lalala.com/api');
+      const json = await response.json();
+    })();
+  }, []);
+  return (
+    // ...
+  );
+};
+
+// ...
+
+export default Coins;
+
+```
+
+저 위의 코드를 캡슐화도 할 수 있습니다.
+fetch로 가져온 api 변수와 그것을 json으로 표현하는 변수를 하나로 합친 코드입니다.
+
+```typescript
+import { useEffect } from 'react';
+
+const Coins = () => {
+  const [coins, setCoins] = useState<CoinInterface[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    (async () => {
+      const data = await (await fetch('https://lalala.com/api')).json();
+    })();
+  }, []);
+  return (
+    // ...
+  );
+};
+
+// ...
+
+export default Coins;
+
+```
+
+# 2022.9.29
+
+axios라는 모듈을 가지고 api를 부르면 이것보다 더 쉽게 불러올 수 있습니다.
+
+```typescript
+import { useEffect } from 'react';
+import axios from 'axios';
+
+const Coins = () => {
+  const [coins, setCoins] = useState<CoinInterface[]>([]);
+  const [loading, setLoading] = useState(true);
+  const getCoins = async () => {
+    const res = await axios('https://api.coinpaprika.com/v1/coins');
+    // 표현되는 데이터 수 100개
+    setCoins(res.data.slice(0, 100));
+    setLoading(false);
+  };
+  useEffect(() => {
+    getCoins();
+  }, []);
+  return (
+    // ...
+  );
+};
+
+// ...
+
+export default Coins;
+```
+
+## 6. Nested Route
+
+(임시)
+react router dom v6에서 중첩라우팅을 하는 방법은 크게 두가지.
+
+1. router.tsx에서
+
+```typescript
+<Route path="/:coinId/*" element={<Coin />} />
+```
+
+Coin.tsx에서
+
+```typescript
+<Routes>
+  <Route path="chart" element={<Chart />} />
+  <Route path="price" element={<Price />} />
+</Routes>
+```
+Routes가 상대경로도 지원하기 때문에 path="chart"와 같이 써도 동작
+
+2. 자식 route를 부모 element의 내부가 아닌 route 내부에 작성하는 방법
+   router.tsx에서
+   chart와 price 컴포넌트를 import하고
+
+```typescript
+<Route path="/:coinId" element={<Coin />}>
+  <Route path="chart" element={<Chart />} />
+  <Route path="price" element={<Price />} />
+</Route>
+```
+그리고 이 자식 Route들이 어디에 render 될지 부모의 element안에 Outlet을 이용해 표시

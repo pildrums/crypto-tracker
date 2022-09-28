@@ -2,11 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-/**
- * @constant coins - Dummy Data
- * @todo API Data 가져올 예정.
- */
-
 interface CoinInterface {
   id: string;
   name: string;
@@ -42,7 +37,7 @@ const Coins = () => {
         <CoinList>
           {coins.map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`} state={coin.name}>
+              <Link to={`/${coin.id}`} state={coin}>
                 <Img
                   src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
                   alt="coinIcon"

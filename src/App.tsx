@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import Router from './Router';
+import Router from 'Router';
 
 /**
  * @description createGlobalStyle을 이용해서 전역 스타일링 가능.
