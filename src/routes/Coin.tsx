@@ -20,7 +20,7 @@ const Coin = () => {
   return (
     <Container>
       <Header>
-        <Title>{state?.name}</Title>
+        <Title>{state?.name || "Loading..."}</Title>
       </Header>
       {loading && <Loader>Loading...</Loader>}
     </Container>
