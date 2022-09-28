@@ -3,7 +3,9 @@ import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface RouterState {
-  state: string;
+  state: {
+    name: string;
+  };
 }
 
 /**
@@ -18,7 +20,7 @@ const Coin = () => {
   return (
     <Container>
       <Header>
-        <Title>{state}</Title>
+        <Title>{state?.name}</Title>
       </Header>
       {loading && <Loader>Loading...</Loader>}
     </Container>
