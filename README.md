@@ -70,8 +70,50 @@ setValue(1);
 const [value, setValue] = useState<number | string>(0);
 
 // setter 함수의 인자에 number나 string으로 넣어줄 수 있음.
-setValue("hello");
+setValue('hello');
 ```
 
-그러나 두번째 예시의 경우에는 잘 쓰이지 않습니다. state를 만들면 그 타입 그대로 쓰는 경우가 많아서 굳이 나눠서 쓸 필요는 없지만 혹시라도 사용해야하는 경우라면 알아둬야 할
-것 같습니다.
+그러나 두번째 예시의 경우에는 잘 쓰이지 않습니다. state를 만들면 그 타입 그대로 쓰는 경우가 많아서 굳이 나눠서 쓸 필요는 없지만 혹시라도 사용해야하는 경우라면 알아둬야 할 것 같습니다.
+
+# 2022.9.28
+
+## 4. React-Router-Dom v6
+
+React에서 라우팅을 할 때에는 React-Router-Dom을 사용해서 라우팅을 합니다.  
+NomadCoder 강의에서는 v5로 작업을 했지만, 저는 여기서 v6로 리팩토링했습니다.
+
+1. App 컴포넌트를 BrowserRouter로 묶어줍니다. 다만 Router.tsx를 만들어서 따로 적용하겠습니다.
+
+```typescript
+import { BrowserRouter } from 'react-router-dom';
+
+const Router = () => {
+  return (
+    <BrowserRouter>
+    </BrowserRouter>
+  );
+};
+
+export default Router;
+```
+2. Routes와 Route를 사용해서 라우팅할 컴포넌트를 넣어줍니다.  
+path props에 사용할 쿼리를 적어주면 됩니다.  
+v5와 다르게 v6는 Switch가 아닌 Routes를 사용하고, element props 안에  
+라우팅할 컴포넌트를 넣어주게 됩니다.
+
+```typescript
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MyComponent from './routes/Mycomponent';
+
+const Router = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/myComponent" element={<MyComponent />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default Router;
+```
