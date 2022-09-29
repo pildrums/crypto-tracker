@@ -202,16 +202,15 @@ export default Coins;
 
 ## 6. Nested Route
 
-(임시)
-react router dom v6에서 중첩라우팅을 하는 방법은 크게 두가지.
+react router dom v6에서 중첩라우팅을 하는 방법은 크게 두가지입니다.
 
-1. router.tsx에서
+1. router.tsx에서 먼저 path의 맨 마지막에 /\* 를 넣어줍니다. 이것은 하위에 어떤 path가 들어가도 된다는 의미이기도 합니다.
 
 ```typescript
 <Route path="/:coinId/*" element={<Coin />} />
 ```
 
-Coin.tsx에서
+Coin.tsx에서 기존 방식대로 Routes와 Route를 이용해서 라우팅을 해줍니다.
 
 ```typescript
 <Routes>
@@ -219,16 +218,43 @@ Coin.tsx에서
   <Route path="price" element={<Price />} />
 </Routes>
 ```
-Routes가 상대경로도 지원하기 때문에 path="chart"와 같이 써도 동작
 
-2. 자식 route를 부모 element의 내부가 아닌 route 내부에 작성하는 방법
-   router.tsx에서
-   chart와 price 컴포넌트를 import하고
+Routes가 상대경로도 지원하기 때문에 path="chart"와 같이 써도 동작하게 됩니다.
+
+2. 자식 route를 부모 element의 내부가 아닌 route 내부에 작성하는 방법이 있습니다. v6에서 처음 선보인 Outlet이라는 기능입니다.  
+   router.tsx에서 chart와 price 컴포넌트를 import하고 그리고 이 자식 Route들이 어디에 render 될지 부모의 element안에 Outlet을 이용해 표시합니다.
 
 ```typescript
+//Router.tsx
 <Route path="/:coinId" element={<Coin />}>
   <Route path="chart" element={<Chart />} />
   <Route path="price" element={<Price />} />
 </Route>
+
+// Coin.tsx
+<Outlet />
 ```
-그리고 이 자식 Route들이 어디에 render 될지 부모의 element안에 Outlet을 이용해 표시
+
+## 7. React-Query
+
+(임시)  
+React-Query는 좀 더 쉬운 방법으로 API를 호출할 수 있는 라이브러리입니다.
+
+1. api.ts 생성 (fetcher 함수)
+
+```typescript
+//일빈적인 방법
+export async funtion fetchCoins() {
+  const response = await fetch('https://lalala.com');
+  const json = await response.json();
+  return json;
+}
+
+// 조금 더 줄인다면...
+export async funtion fetchCoins() {
+  return fetch('https://lalala.com').then((response) => 
+    response.json()
+  );
+}
+```
+그 다음 

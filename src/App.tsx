@@ -1,5 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 import Router from 'Router';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
+    </>
+  );
+};
 
 /**
  * @description createGlobalStyle을 이용해서 전역 스타일링 가능.
@@ -70,13 +81,6 @@ const GlobalStyle = createGlobalStyle`
 /**
  * @todo 홈 화면 스타일링
  */
-const App = () => {
-  return (
-    <>
-      <GlobalStyle />
-      <Router />
-    </>
-  );
-};
+
 
 export default App;
