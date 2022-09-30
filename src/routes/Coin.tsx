@@ -78,6 +78,7 @@ type TParams = {
 /**
  * @description 세부 컴포넌트
  * @description secret 창에서 url을 입력했을 때 loading 문구 처리 - Done
+ * @todo UI 변경, 한국어화
  */
 const Coin = () => {
   const { coinId } = useParams() as TParams; // coinId 파라미터
