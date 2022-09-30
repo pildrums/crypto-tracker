@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { fetchCoinHistory } from './api';
 
 type IChartProps = {
