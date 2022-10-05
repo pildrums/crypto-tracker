@@ -14,6 +14,10 @@ interface ICoin {
   type: string;
 }
 
+interface ICoinsProps {
+  toggleDark: () => void;
+}
+
 /**
  * @description 메인 컴포넌트
  * @todo 뒤로가기 기능 구현
@@ -22,7 +26,7 @@ interface ICoin {
  * @todo Be Adding DarkMode
  * @todo Be Adding Recoil
  */
-const Coins = () => {
+const Coins = ({ toggleDark }: ICoinsProps) => {
   const { isLoading, data } = useQuery<ICoin[]>(['allCoins'], fetchCoins);
   return (
     <Container>
@@ -31,6 +35,7 @@ const Coins = () => {
       </Helmet>
       <Header>
         <Title>코인</Title>
+        <button onClick={toggleDark}>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
