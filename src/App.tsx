@@ -1,13 +1,20 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Router from 'Router';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { darkTheme, lightTheme } from 'theme';
+import { useState } from 'react';
 
 const App = () => {
+  const [isDark, setIsDark] = useState(false);
+  const toggleDark = () => setIsDark((current) => !current);
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <button onClick={toggleDark}>Toggle Mode</button>
+        <GlobalStyle />
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 };
@@ -81,6 +88,5 @@ const GlobalStyle = createGlobalStyle`
 /**
  * @todo 홈 화면 스타일링
  */
-
 
 export default App;

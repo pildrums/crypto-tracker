@@ -20,6 +20,7 @@ interface IHistorical {
 
 /**
  * @description Outlet을 사용할 시 useOutletContext 함수를 통해 부모 컴포넌트에서 자식 컴포넌트로 데이터 전달
+ * @description refetchInterval: 데이터 refetching 주기 설정
  * @todo ApexCharts 스타일 및 기능 추가 / 삭제
  * @todo ApexCharts type 변경
  * @todo ApexCharts 날짜 yyyy년 mm월 dd일로 변경

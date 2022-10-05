@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchCoins } from './api';
@@ -15,11 +16,19 @@ interface ICoin {
 
 /**
  * @description 메인 컴포넌트
+ * @todo 뒤로가기 기능 구현
+ * @todo price 기능(price 데이터를 구체적으로)
+ * @todo line chart -> candlechart
+ * @todo Be Adding DarkMode
+ * @todo Be Adding Recoil
  */
 const Coins = () => {
   const { isLoading, data } = useQuery<ICoin[]>(['allCoins'], fetchCoins);
   return (
     <Container>
+      <Helmet>
+        <title>코인</title>
+      </Helmet>
       <Header>
         <Title>코인</Title>
       </Header>
@@ -60,10 +69,11 @@ const Header = styled.header`
 const CoinList = styled.ul``;
 
 const Coin = styled.li`
-  background: #fff;
-  color: ${(props) => props.theme.bgColor};
+  background: ${(props) => props.theme.cardColor};
+  color: ${(props) => props.theme.textColor};
   margin-bottom: 10px;
   border-radius: 15px;
+  border: 1px solid #fff;
   a {
     display: flex;
     align-items: center;
