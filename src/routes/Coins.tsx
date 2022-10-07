@@ -3,7 +3,7 @@ import { isDarkAtom } from 'atoms';
 import Button from 'components/common/Button';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { fetchCoins } from './api';
 import { FaMoon, FaSun } from 'react-icons/fa';
@@ -32,6 +32,7 @@ const Coins = () => {
   const setDarkAtom = useSetRecoilState(isDarkAtom);
   const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   const { isLoading, data } = useQuery<ICoin[]>(['allCoins'], fetchCoins);
+  const isIconAtom = useRecoilValue(isDarkAtom)
   return (
     <Container>
       <Helmet>
@@ -40,7 +41,7 @@ const Coins = () => {
       <Header>
         <Title>코인</Title>
         <Button onClick={toggleDarkAtom}>
-          <FaMoon />
+          {isIconAtom ? <FaSun /> : <FaMoon />}
         </Button>
       </Header>
       {isLoading ? (
