@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import Button from 'components/common/Button';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import {
   Link,
   Outlet,

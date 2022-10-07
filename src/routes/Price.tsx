@@ -1,13 +1,17 @@
+import { useQuery } from '@tanstack/react-query';
+import { useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
+import { fetchCoinTickers } from './api';
 
-interface IPrice {}
+interface IPriceProps {
+  coinId: string;
+}
 
 const Price = () => {
-  return (
-    <PriceContainer>
-      
-    </PriceContainer>
-  );
+  const { coinId } = useOutletContext<IPriceProps>();
+  console.log(fetchCoinTickers(coinId));
+  
+  return <PriceContainer></PriceContainer>;
 };
 
 const PriceContainer = styled.div``;

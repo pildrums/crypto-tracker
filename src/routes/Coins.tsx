@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { isDarkAtom } from 'atoms';
 import Button from 'components/common/Button';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';

@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { darkTheme, lightTheme } from 'theme';
 import { useRecoilValue } from 'recoil';
 import { isDarkAtom } from 'atoms';
+import { HelmetProvider } from 'react-helmet-async';
 
 const App = () => {
   const isDark = useRecoilValue(isDarkAtom);
@@ -11,7 +12,9 @@ const App = () => {
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        <Router />
+        <HelmetProvider>
+          <Router />
+        </HelmetProvider>
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>
