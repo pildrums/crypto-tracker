@@ -16,8 +16,12 @@ const StyledButton = styled.button`
   font-size: 1rem;
   padding: 0.25rem 1rem;
   outline: none;
+  cursor: pointer;
   // default background color
   background: ${props => props.theme.buttonColor};
+  svg {
+    color: ${props => props.theme.buttonIconColor};
+  }
 `;
 
 export default Button;

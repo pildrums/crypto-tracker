@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { fetchCoins } from './api';
+import { FaMoon, FaSun } from 'react-icons/fa';
 
 interface ICoin {
   id: string;
@@ -17,7 +18,7 @@ interface ICoin {
   type: string;
 }
 
-interface ICoinsProps {}
+// interface ICoinsProps {}
 
 /**
  * @description 메인 컴포넌트
@@ -38,7 +39,9 @@ const Coins = () => {
       </Helmet>
       <Header>
         <Title>코인</Title>
-        <Button onClick={toggleDarkAtom}>다크모드</Button>
+        <Button onClick={toggleDarkAtom}>
+          <FaMoon />
+        </Button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
