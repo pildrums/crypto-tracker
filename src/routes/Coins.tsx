@@ -14,9 +14,7 @@ interface ICoin {
   type: string;
 }
 
-interface ICoinsProps {
-  toggleDark: () => void;
-}
+interface ICoinsProps {}
 
 /**
  * @description 메인 컴포넌트
@@ -26,7 +24,7 @@ interface ICoinsProps {
  * @todo Be Adding DarkMode
  * @todo Be Adding Recoil
  */
-const Coins = ({ toggleDark }: ICoinsProps) => {
+const Coins = () => {
   const { isLoading, data } = useQuery<ICoin[]>(['allCoins'], fetchCoins);
   return (
     <Container>
@@ -35,7 +33,7 @@ const Coins = ({ toggleDark }: ICoinsProps) => {
       </Helmet>
       <Header>
         <Title>코인</Title>
-        <button onClick={toggleDark}>Toggle Mode</button>
+        <button>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>

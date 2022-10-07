@@ -76,16 +76,14 @@ type TParams = {
   coinId: string;
 };
 
-interface ICoinProps {
-  isDark: boolean;
-}
+interface ICoinProps {}
 
 /**
  * @description 세부 컴포넌트
  * @description secret 창에서 url을 입력했을 때 loading 문구 처리 - Done
  * @todo UI 변경, 한국어화
  */
-const Coin = ({ isDark }: ICoinProps) => {
+const Coin = () => {
   const { coinId } = useParams() as TParams; // coinId 파라미터
   const { state } = useLocation() as RouterState; // 현재 URL 정보
   const chartMatch = useMatch('/:coinId/chart');
@@ -158,7 +156,7 @@ const Coin = ({ isDark }: ICoinProps) => {
               <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
-          <Outlet context={{ coinId, isDark }} />
+          <Outlet context={{ coinId }} />
         </>
       )}
     </Container>

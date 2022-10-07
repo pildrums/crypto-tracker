@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+import { isDarkAtom } from 'atoms';
 import ApexCharts from 'react-apexcharts';
 import { useOutletContext } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import { fetchCoinHistory } from './api';
 
 interface IChartProps {
   coinId: string;
-  isDark: boolean;
 }
 
 interface IHistorical {
@@ -28,7 +29,7 @@ interface IHistorical {
  * @link https://velog.io/@qkr135qkr/react-router-dom-v6%EC%97%90%EC%84%9C-%EC%9E%90%EC%8B%9D-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90%EA%B2%8C-props%EB%A5%BC-%EC%A0%84%EB%8B%AC%ED%95%B4%EB%B3%B4%EC%9E%90
  */
 const Chart = () => {
-  const { coinId, isDark } = useOutletContext<IChartProps>();
+  const { coinId } = useOutletContext<IChartProps>();
   const { isLoading, data } = useQuery<IHistorical[]>(
     ['ohlcv', coinId],
     () => fetchCoinHistory(coinId),
@@ -36,6 +37,7 @@ const Chart = () => {
       refetchInterval: 10000,
     },
   );
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <div>
       {isLoading ? (
