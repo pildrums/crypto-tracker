@@ -19,7 +19,11 @@ const StyledButton = styled.button`
   cursor: pointer;
   // default background color
   background: ${props => props.theme.buttonColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   svg {
+    font-size: 24px;
     color: ${props => props.theme.buttonIconColor};
   }
 `;

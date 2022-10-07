@@ -32,7 +32,7 @@ const Coins = () => {
   const setDarkAtom = useSetRecoilState(isDarkAtom);
   const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   const { isLoading, data } = useQuery<ICoin[]>(['allCoins'], fetchCoins);
-  const isIconAtom = useRecoilValue(isDarkAtom)
+  const isIconAtom = useRecoilValue(isDarkAtom);
   return (
     <Container>
       <Helmet>
