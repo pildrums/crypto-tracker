@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
+import { isDarkAtom } from 'atoms';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { fetchCoins } from './api';
 
@@ -25,6 +27,8 @@ interface ICoinsProps {}
  * @todo Be Adding Recoil
  */
 const Coins = () => {
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   const { isLoading, data } = useQuery<ICoin[]>(['allCoins'], fetchCoins);
   return (
     <Container>
@@ -33,7 +37,7 @@ const Coins = () => {
       </Helmet>
       <Header>
         <Title>코인</Title>
-        <button>Toggle Mode</button>
+        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
