@@ -79,6 +79,10 @@ const Header = styled.header`
   button {
     position: absolute;
     right: 80px;
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 `;
 
@@ -89,7 +93,8 @@ const Coin = styled.li`
   color: ${(props) => props.theme.textColor};
   margin-bottom: 10px;
   border-radius: 15px;
-  border: 1px solid #fff;
+  border: 1px solid ${(props) => props.theme.borderColor};
+  transition: transform 0.5s ease-in-out;
   a {
     display: flex;
     align-items: center;
@@ -97,6 +102,7 @@ const Coin = styled.li`
     transition: color 0.5s ease-in;
   }
   &:hover {
+    transform: translateX(16px);
     a {
       color: ${(props) => props.theme.accentColor};
     }

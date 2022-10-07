@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+import Button from 'components/common/Button';
 import { Helmet } from 'react-helmet';
 import {
   Link,
   Outlet,
   useLocation,
   useMatch,
+  useNavigate,
   useParams,
 } from 'react-router-dom';
 import styled from 'styled-components';
@@ -76,7 +78,7 @@ type TParams = {
   coinId: string;
 };
 
-interface ICoinProps {}
+// interface ICoinProps {}
 
 /**
  * @description 세부 컴포넌트
@@ -86,6 +88,7 @@ interface ICoinProps {}
 const Coin = () => {
   const { coinId } = useParams() as TParams; // coinId 파라미터
   const { state } = useLocation() as RouterState; // 현재 URL 정보
+  const navigate = useNavigate();
   const chartMatch = useMatch('/:coinId/chart');
   const priceMatch = useMatch('/:coinId/price');
   const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
@@ -100,6 +103,9 @@ const Coin = () => {
     () => fetchCoinTickers(coinId),
   );
   const loading = infoLoading || tickersLoading;
+  const goHome = () => {
+    navigate('/');
+  };
   // render
   return (
     <Container>
@@ -118,6 +124,7 @@ const Coin = () => {
           */}
           {state?.name ? state.name : loading ? 'Loading...' : infoData?.name}
         </Title>
+        <Button onClick={goHome}>홈</Button>
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>

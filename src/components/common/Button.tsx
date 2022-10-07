@@ -1,11 +1,21 @@
 import styled from 'styled-components';
 
+/**
+ * @interface onClick, children, disabled type(optional)
+ * @description onClick: event => void
+ * @description children: React.ReactNode
+ * @description disabled: boolean
+ */
 interface IButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children?: React.ReactNode;
   disabled?: boolean;
 }
 
+/**
+ * @param props onClick?, children?, disabled?
+ * @returns Custom Button
+ */
 const Button = (props: IButtonProps) => {
   return <StyledButton {...props} />;
 };

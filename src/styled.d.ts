@@ -11,5 +11,6 @@ declare module 'styled-components' {
     cardColor: string;
     buttonColor: string;
     buttonIconColor: string;
+    borderColor: string;
   }
 }
