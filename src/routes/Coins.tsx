@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { isDarkAtom } from 'atoms';
+import Button from 'components/common/Button';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
@@ -37,7 +38,7 @@ const Coins = () => {
       </Helmet>
       <Header>
         <Title>코인</Title>
-        <button onClick={toggleDarkAtom}>Toggle Mode</button>
+        <Button onClick={toggleDarkAtom}>다크모드</Button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
@@ -71,6 +72,10 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  button {
+    position: absolute;
+    right: 80px;
+  }
 `;
 
 const CoinList = styled.ul``;
