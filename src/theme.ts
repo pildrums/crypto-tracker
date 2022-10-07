@@ -13,6 +13,7 @@ export const darkTheme: DefaultTheme = {
   buttonColor: '#fff',
   buttonIconColor: '#ff884b',
   borderColor: '#fff',
+  buttonTextColor: '#2f3640',
 };
 
 export const lightTheme: DefaultTheme = {
@@ -23,4 +24,5 @@ export const lightTheme: DefaultTheme = {
   buttonColor: '#2f3640',
   buttonIconColor: '#fdff00',
   borderColor: '#fff',
+  buttonTextColor: '#fff',
 };

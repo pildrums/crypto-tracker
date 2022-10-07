@@ -181,6 +181,10 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  button {
+    position: absolute;
+    right: 80px;
+  }
 `;
 
 const Title = styled.h1`

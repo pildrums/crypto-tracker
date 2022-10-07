@@ -22,11 +22,8 @@ interface ICoin {
 
 /**
  * @description 메인 컴포넌트
- * @todo 뒤로가기 기능 구현
  * @todo price 기능(price 데이터를 구체적으로)
  * @todo line chart -> candlechart
- * @todo Be Adding DarkMode
- * @todo Be Adding Recoil
  */
 const Coins = () => {
   const setDarkAtom = useSetRecoilState(isDarkAtom);

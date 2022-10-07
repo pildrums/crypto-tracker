@@ -32,6 +32,7 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${props => props.theme.buttonTextColor};
   svg {
     font-size: 24px;
     color: ${props => props.theme.buttonIconColor};

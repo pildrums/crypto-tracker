@@ -1,9 +1,15 @@
+import styled from 'styled-components';
+
+interface IPrice {}
+
 const Price = () => {
   return (
-    <div>
-      Price
-    </div>
+    <PriceContainer>
+      
+    </PriceContainer>
   );
 };
+
+const PriceContainer = styled.div``;
 
 export default Price;
