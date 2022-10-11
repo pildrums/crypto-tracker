@@ -40,7 +40,10 @@ interface IPriceData {
     };
   };
 }
-
+/**
+ * @todo Modified Component UI at PriceItem 
+ * @returns Price Component - UI
+ */
 const Price = () => {
   const { coinId } = useOutletContext<IPriceProps>();
   const { isLoading, data } = useQuery<IPriceData>(
