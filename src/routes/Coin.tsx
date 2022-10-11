@@ -18,7 +18,7 @@ interface RouterState {
   };
 }
 
-interface InfoData {
+interface IInfoData {
   id: string;
   name: string;
   symbol: string;
@@ -40,7 +40,7 @@ interface InfoData {
   last_data_at: string;
 }
 
-interface PriceData {
+interface ICoinData {
   id: string;
   name: string;
   symbol: string;
@@ -91,14 +91,14 @@ const Coin = () => {
   const navigate = useNavigate();
   const chartMatch = useMatch('/:coinId/chart');
   const priceMatch = useMatch('/:coinId/price');
-  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+  const { isLoading: infoLoading, data: infoData } = useQuery<IInfoData>(
     ['info', coinId],
     () => fetchCoinInfo(coinId),
     {
       refetchInterval: 5000,
     },
   );
-  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<ICoinData>(
     ['tickers', coinId],
     () => fetchCoinTickers(coinId),
   );
